@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pet Details</title>
+  <style>
+    body {
+      background-color: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+
+    .details-container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    p {
+      margin-bottom: 10px;
+    }
+
+    strong {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="details-container">
+    <h2>Pet Details</h2>
+    <div id="printedDetails"></div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var petDetails = localStorage.getItem('petDetails');
+      if (petDetails) {
+        petDetails = JSON.parse(petDetails);
+        displayDetails(petDetails);
+      } else {
+        // Handle case when details are not available
+        console.log('Pet details not found!');
+      }
+    });
+
+    function displayDetails(details) {
+      var printedDetails = document.getElementById('printedDetails');
+
+      var html = '<p><strong>Name:</strong> ' + details.name + '</p>';
+      html += '<p><strong>Age:</strong> ' + details.age + '</p>';
+      html += '<p><strong>Breed:</strong> ' + details.breed + '</p>';
+
+      printedDetails.innerHTML = html;
+    }
+  </script>
+</body>
+</html>

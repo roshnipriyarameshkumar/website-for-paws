@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pet Details Form</title>
+  <style>
+    body {
+      background-color: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+
+    .form-container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .submit-button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .submit-button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Pet Details</h2>
+    <form id="petForm" onsubmit="saveDetails(event)">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="age">Age:</label>
+        <input type="number" id="age" required>
+      </div>
+
+      <div class="form-group">
+        <label for="breed">Breed:</label>
+        <input type="text" id="breed" required>
+      </div>
+
+      <button type="submit" class="submit-button">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    function saveDetails(event) {
+      event.preventDefault();
+
+      var nameInput = document.getElementById('name');
+      var ageInput = document.getElementById('age');
+      var breedInput = document.getElementById('breed');
+
+      var petDetails = {
+        name: nameInput.value.trim(),
+        age: ageInput.value.trim(),
+        breed: breedInput.value.trim()
+      };
+
+      localStorage.setItem('petDetails', JSON.stringify(petDetails));
+
+      // Redirect to the other page
+      window.location.href = 'print-details.html';
+    }
+  </script>
+</body>
+</html>

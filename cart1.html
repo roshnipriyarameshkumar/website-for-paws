@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shopping Cart</title>
+  <style>
+.item {
+  display: inline-block;
+  text-align: center;
+  margin: 10px;
+}
+
+#cart {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #EEE8AA;
+}
+
+
+#cart-items {
+  list-style-type: none;
+}
+#cart-items img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+#cart-items li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.remove-button {
+  background-color: #ff0000;
+  color: #ffffff;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+  <h1 style="background-color:lightblue;text-align:center;">Pawsitive shopping Cart</h1>
+  <script>
+// Array to store the cart items
+var cartItems = [];
+
+// Function to add an item to the cart
+function addToCart(item) {
+  cartItems.push(item);
+  updateCart();
+}
+
+// Function to remove an item from the cart
+function removeFromCart(index) {
+  cartItems.splice(index, 1);
+  updateCart();
+}
+
+// Function to update the cart display
+function updateCart() {
+  var cartList = document.getElementById('cart-items');
+  cartList.innerHTML = '';
+
+  // Add each item to the cart list
+  for (var i = 0; i < cartItems.length; i++) {
+    var item = cartItems[i];
+    var li = document.createElement('li');
+    li.innerHTML = `
+      <span>${item}</span>
+      <button class="remove-button" onclick="removeFromCart(${i})">Remove</button>
+    `;
+    cartList.appendChild(li);
+  }
+
+  // Update the total price
+  var totalPrice = cartItems.length * 10; // Assuming each item costs $10
+  var cartTotal = document.getElementById('cart-total');
+  cartTotal.textContent = '$' + totalPrice.toFixed(2);
+}
+</script>
+  <div class="item">
+    <img src="product_01.jpg" alt="chicken">
+    <h2>Free chicken range</h2>
+    <p>$10.00</p>
+    <button onclick="addToCart('chicken')">Add to Cart</button>
+  </div>
+  
+  <div class="item">
+    <img src="product_02.jpg" alt="beef">
+    <h2>Beef</h2>
+    <p>$10.00</p>
+    <button onclick="addToCart('beef')">Add to Cart</button>
+  </div>
+<div class="item">
+    <img src="product_03.jpg" alt="lamb">
+    <h2>Lamb</h2>
+    <p>$10.00</p>
+    <button onclick="addToCart('lamb')">Add to Cart</button>
+  </div>
+<div class="item">
+    <img src="product_04.jpg" alt="biscuits">
+    <h2>Beef mixed biscuits</h2>
+    <p>$10.00</p>
+    <button onclick="addToCart('biscuits')">Add to Cart</button>
+  </div>
+<div class="item">
+    <img src="product_05.jpg" alt="salmon">
+    <h2>Salmons</h2>
+    <p>$10.00</p>
+    <button onclick="addToCart('salmon')">Add to Cart</button>
+  </div>
+<div class="item">
+    <img src="product_06.jpg" alt="venison">
+    <h2>Venison</h2>
+    <p>$10.00</p>
+    <button onclick="addToCart('venison')">Add to Cart</button>
+  </div>
+  
+  <div id="cart">
+    <h2 style="background-color:lightblue;">Cart</h2>
+    <ul id="cart-items">
+      <!-- Cart items will be dynamically added here -->
+    </ul>
+    <p>Total: <span id="cart-total">$0.00</span></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
